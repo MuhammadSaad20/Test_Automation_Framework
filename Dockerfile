@@ -10,11 +10,12 @@ COPY requirements.txt /app/
 # Install dependencies using pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the project files
+# Copy the entire app (including src folder) to the container
 COPY . /app/
 
-# Expose the port (optional for running tests)
-# EXPOSE 5000
 
-# Run the tests using pytest
+# Set the environment variable to make the src directory available for imports
+ENV PYTHONPATH=/app/src
+
+# Run the tests
 CMD ["pytest", "src/tests/"]
