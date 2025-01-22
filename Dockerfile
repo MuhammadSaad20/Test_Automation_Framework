@@ -10,12 +10,11 @@ COPY requirements.txt /app/
 # Install dependencies using pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your application files into the container
+# Copy the project files
 COPY . /app/
 
-# Expose the required port (if applicable, for web apps)
-EXPOSE 5000  
-# Change the port if needed
+# Expose the port (optional for running tests)
+# EXPOSE 5000
 
-# Set the default command to run your test suite (change this as needed)
+# Run the tests using pytest
 CMD ["pytest", "src/tests/"]
